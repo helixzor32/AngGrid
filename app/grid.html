@@ -1,0 +1,54 @@
+<html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="app/js/app.js"></script>
+  <script src="app/js/services.js"></script>
+  <script src="app/js/controllers.js"></script>
+  <link rel="stylesheet" href="app/css/bootstrap.css" />
+</head>
+<body ng-app="EmployeeGrid" ng-controller="employeeController">
+  <center>
+	<img src='app/img/loading.gif' id='loading' />
+  <table width="80%" border="1" style="display:none;" id="maintable">
+    <thead>
+      <tr><th colspan="7" style="text-align:center !IMPORTANT;">Company Employees</th></tr>
+      <tr>
+		<th ng-repeat="field in fieldList">{{ field.name }}</th>
+	  </tr>
+	  </thead>
+    <tbody>
+      <tr ng-repeat="employee in employeeList | offset: currentPage*employeesPerPage | limitTo: employeesPerPage">
+        <td>{{employee.id}}</td>
+        <td>
+          {{employee.fname}}
+        </td>
+        <td>{{employee.lname}}</td>
+        <td>{{employee.title}}</td>
+        <td>{{employee.city}}</td>
+        <td>{{employee.dob}}</td>
+        <td>{{employee.age}}</td>
+		</tr>
+    </tbody>
+	<tfoot>
+      <td colspan="7">
+        <div class="pagination">
+		<center>
+          <ul>
+            <li ng-class="prevPageDisabled()">
+              <a href ng-click="prevPage()">« Prev</a>
+            </li>
+            <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+              <a href="#">{{n+1}}</a>
+            </li>
+            <li ng-class="nextPageDisabled()">
+              <a href ng-click="nextPage()">Next »</a>
+            </li>
+          </ul>
+		  </center>
+        </div>
+      </td>
+    </tfoot>
+  </table>
+  </center>
+</body>
