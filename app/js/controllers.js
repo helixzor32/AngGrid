@@ -34,11 +34,11 @@ app.controller('employeeController', function($scope, $http) {
     });	
 	
 	//25 employees per page (0 indexed)
-	$scope.employeesPerPage = 24;
+	$scope.employeesPerPage = 99;
 	$scope.currentPage = 0;
 	
 	$scope.range = function() {
-		var rangeSize = 25;
+		var rangeSize = 100;
 		var ret = [];
 		var start;
 
